@@ -16,7 +16,7 @@ interface IParams extends ParsedUrlQuery {
     slug: string
 }
 
-let Hello:NextPage<Props,InitialProps>=(props)=> {
+let Slug:NextPage<Props,InitialProps>=(props)=> {
   return (
     <div>
       <h1 className={Style.h1}>hi jacob</h1>
@@ -93,4 +93,4 @@ return  {
 }
 }
 
-export default Hello
+export default Slug
