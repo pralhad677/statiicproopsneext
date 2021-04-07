@@ -93,4 +93,11 @@ return  {
 }
 }
 
+<<<<<<< HEAD
 export default Slug
+=======
+export default Hello
+
+//note==> getStaticProps chai hamile kunai pani page le pre-rendering grda use garxa in the case where file is not dynamic means not edning with [anything].tsx 
+//but yedi dynamic data from dyanamic path bata aako x vne ni getStaticPaths use grnu prxa along with getStaticProps eklai getStaticPaths wont work
+>>>>>>> e1ca48d661cc6558fab78d161d2c8b1e11eb4e33
