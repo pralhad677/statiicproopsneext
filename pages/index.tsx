@@ -9,7 +9,7 @@ import {array} from '../data/dummy.backend'
 
 
 interface PageData {
-  id:number,
+  id:string,
   title:string
 }
 // interface Dummy{
@@ -42,7 +42,7 @@ let Index:NextPage<Props,InitialProps>=({Products,message})=> {
 
 
 
-export async function getStaticProps(_context): Promise<GetStaticPropsResult<InitialProps>> {
+export async function GetStaticProps(context): Promise<GetStaticPropsResult<InitialProps>> {
   try{
   const Path = path.resolve(process.cwd(),'data','jacob.txt')//you can use path.join() too
   //process.cwd => gives current working directory and then using 'data' to move into data folder inside of working directory
