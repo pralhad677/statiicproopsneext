@@ -57,6 +57,16 @@ export async function getStaticProps(context): Promise<GetStaticPropsResult<Init
     var data1:string= (await fs.readFile(Path)).toString()
     //    var data2 = data1.array
     console.log('data1',data1)
+
+    //imp note
+    //fs.readFile bata chai hamile json format ma vako data lai parse grna garo vako le grda jsonfile vnne npm packake ko thorugh file ma vako json text lai read + object ma parse garna easy vako le grda use grya ho
+    //yedi file ma json ma navako vae fs.read file bata nai easily grda hunxa may b i think so hai
+
+    let myData = jsonfile.readFileSync(Path)
+    console.group('myData',myData)
+    
+    var array1 = myData.array.find(item=>item.id ===dynamicId) //yo chai exactly kun chai dynamic path ho vnera ani tei snusar ko data find gareko ho
+    console.log(array1)
    
 
     }catch(err){
@@ -81,11 +91,7 @@ export async function getStaticProps(context): Promise<GetStaticPropsResult<Init
 
 
     //ya hamile json.readFile grda ni hunxa but tyo async task vako le getStaticProps le surumai return object grdina ani tespaxi matra json,redFile le data return grxa so readFileSync use grya ho
-    let myData = jsonfile.readFileSync(Path)
-    console.group('myData',myData)
     
-    let array1 = myData.array.find(item=>item.id ===dynamicId)
-    console.log(array1)
     // var arr:InitialProps;
     // jsonfile.readFile(Path, function (err, obj) {
     //   if (err) console.error(err)
