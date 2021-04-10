@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "jsonfile": "^6.1.0",
     "next": "10.1.3",
     "querystring": "^0.2.1",
     "react": "17.0.2",

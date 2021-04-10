@@ -3,7 +3,7 @@ import Style from '../styles/Home.module.css'
 import fs from 'fs/promises'
 import path from 'path'
 
-import  {NextPage,GetStaticProps,GetStaticPropsResult} from 'next'
+import  {NextPage,GetStaticPropsResult} from 'next'
 
 import {array} from '../data/dummy.backend'
 
@@ -42,9 +42,10 @@ let Index:NextPage<Props,InitialProps>=({Products,message})=> {
 
 
 
-export async function GetStaticProps(context): Promise<GetStaticPropsResult<InitialProps>> {
+export async function getStaticProps(context): Promise<GetStaticPropsResult<InitialProps>> {
   try{
-  const Path = path.resolve(process.cwd(),'data','jacob.txt')//you can use path.join() too
+  const Path = path.resolve(process.cwd(),'data','jacob.txt')
+  //you can use path.join() too
   //process.cwd => gives current working directory and then using 'data' to move into data folder inside of working directory
   console.log(Path)
   var data1:string = (await fs.readFile(Path)).toString()
