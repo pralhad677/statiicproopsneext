@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/[pug].tsx", "pages/[slug].txt"  ],
+, "pages/[pug].tsx", "pages/[slug].txt", "pages/no-data.tsx"  ],
   "exclude": [
     "node_modules"
   ]

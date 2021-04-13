@@ -16,7 +16,7 @@ let noData:NextPage<Props,InitialProps>=(props)=> {
   )
 }
 noData.getInitialProps = async () => ({
- text:'no data'
+ text:'page not found'
 })
 
 export default noData

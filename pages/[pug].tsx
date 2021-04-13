@@ -13,7 +13,8 @@ interface Data {
   id:string
 }
 interface InitialProps{
-    array:Array<Data>
+    array:Array<Data>,
+    length?:number
 }
 // let d:InitialProps = {
 //     array: [
@@ -32,6 +33,9 @@ interface IParams extends ParsedUrlQuery {
 
 let Pug:NextPage<Props,InitialProps>=(props)=> {
   console.log('props.array',props.array)
+  if(!props.array){
+    return <h1>loading</h1>
+  }
   return (
     <div>
       <h1 className={Style.h1}>hi jacob</h1>
@@ -47,7 +51,7 @@ let Pug:NextPage<Props,InitialProps>=(props)=> {
 
 export async function getStaticProps(context): Promise<GetStaticPropsResult<InitialProps>> {
   let {params} = context
-  let dynamicId = params.pug
+  let dynamicId:string = params.pug
  
   
     try{
@@ -62,7 +66,7 @@ export async function getStaticProps(context): Promise<GetStaticPropsResult<Init
     //fs.readFile bata chai hamile json format ma vako data lai parse grna garo vako le grda jsonfile vnne npm packake ko thorugh file ma vako json text lai read + object ma parse garna easy vako le grda use grya ho
     //yedi file ma json ma navako vae fs.read file bata nai easily grda hunxa may b i think so hai
 
-    let myData = jsonfile.readFileSync(Path)
+    var myData:InitialProps = jsonfile.readFileSync(Path)
     console.group('myData',myData)
     
     var array1 = myData.array.find(item=>item.id ===dynamicId) //yo chai exactly kun chai dynamic path ho vnera ani tei snusar ko data find gareko ho
@@ -72,19 +76,21 @@ export async function getStaticProps(context): Promise<GetStaticPropsResult<Init
     }catch(err){
       console.log(err)
     }
-    if(!data1){
+    if(!array1){
      return {
-       redirect:{
-         statusCode:301,
-         destination:'/no-data'
+      notFound:true
+      //  redirect:{
+      //    statusCode:301,
+      //    destination:'/no-data'
        } 
      }
-    }
-    if(data1.length=== 0){
-      return {
-        notFound:true
-      }
-    }
+    
+    // if(myData.length === 0){
+  
+    //   return {
+    //     notFound:true
+    //   }
+    // }
     console.log('arrayOnly')
     //execution order confusing x
 
@@ -109,7 +115,8 @@ export async function getStaticProps(context): Promise<GetStaticPropsResult<Init
     return {
       
         props: {
-          array:[array1]
+          array:[array1],
+          
         
           //  array:[{name:'jacob',id:'1'}],
         
@@ -127,7 +134,7 @@ export async function getStaticProps(context): Promise<GetStaticPropsResult<Init
           paths: [
               {
                   params:{
-                      pug:'1'
+                      pug:'4'
                   },
                   
               },
@@ -142,8 +149,14 @@ export async function getStaticProps(context): Promise<GetStaticPropsResult<Init
           }
           }
           ],
-          fallback:false
-      }
+          fallback:true
+          //fallback-esko main use vneko chai generally kunai website ko sbai page same rate ma read +visit nahuna ni sakxa ni tetibelako lagi yo use grne ho
+          //ani fallback:true garepaxi chai hamile paths hardcoded grna prdena nextjs le dynamicall aafai grdinxa but path(nextjs ma) ma specify gareko path lai chai  fast render grdinxa kina vne tya specify gareko path lai dherai visit grxa user le vnne bujhinxa in case of fallbak:true
+          //fallback true grda typ page haru user le request garepaxi matra genereate hunxa pre fecthing hudaina agadi ni
+
+
+          //fallbak blocking means pre generate grne sab page lai agadi nai
+        }
       }
   
 

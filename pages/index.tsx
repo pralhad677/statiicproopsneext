@@ -2,6 +2,7 @@ import React from 'react'
 import Style from '../styles/Home.module.css'
 import fs from 'fs/promises'
 import path from 'path'
+import {} from 'next/link'
 
 import  {NextPage,GetStaticPropsResult} from 'next'
 
@@ -29,7 +30,8 @@ let Index:NextPage<Props,InitialProps>=({Products,message})=> {
       {
         Products.map(item=>{
           console.log(item.id)
-          return <li key={item.id}>{item.title}</li>
+          return <li key={item.id}>
+            {item.title}</li>
                
         })
       }
